@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STRIV – Shop</title>
+
+<style>
+/* ===== GLOBAL ===== */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #eef3f3;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 30px;
+  background: #0f4446;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  margin: 0 12px;
+  font-weight: 600;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
+
+/* ===== MAIN ===== */
+.main {
+  padding: 30px;
+}
+
+.shop-header {
+  text-align: center;
+  color: #0f4446;
+  margin-bottom: 25px;
+}
+
+.points-box {
+  background: #d9e6e5;
+  padding: 12px;
+  border-radius: 14px;
+  width: 240px;
+  margin: 0 auto 30px;
+  text-align: center;
+  font-weight: 700;
+  color: #0f4446;
+}
+
+/* ===== SHOP GRID ===== */
+.shop-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 25px;
+}
+
+/* ===== PRODUCT CARD ===== */
+.product-card {
+  background: #aac5c4;
+  border-radius: 18px;
+  padding: 15px;
+  text-align: center;
+  transition: 0.25s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+  background: #b8d4d3;
+}
+
+.product-img {
+  width: 100%;
+  height: 160px;
+  object-fit: contain;
+  border-radius: 14px;
+  background: #e7eeee;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.product-name {
+  font-weight: 700;
+  color: #0f4446;
+  font-size: 18px;
+}
+
+.product-price {
+  margin: 8px 0;
+  font-weight: 600;
+  color: #0f4446;
+}
+
+.product-card button {
+  background: #1e5b5e;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* ===== POPUP ===== */
+.popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.hidden {
+  display: none;
+}
+
+.popup-content {
+  background: #d9e6e5;
+  width: 720px;
+  max-width: 95vw;
+  max-height: 90vh;
+  padding: 25px;
+  border-radius: 18px;
+  overflow-y: auto;
+  text-align: center;
+}
+
+.popup-content input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  border: 1px solid #aaa;
+}
+
+.close-btn {
+  background: #1e5b5e;
+  color: white;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  margin-top: 8px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<div class="navbar">
+  <div><b>STRIV</b></div>
+  <div>
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="MENTAL.HTML">Mental</a>
+    <a href="FITNESS.HTML">Fitness</a>
+    <a href="ABOUT.HTML">About</a>
+  </div>
+</div>
+
+<!-- ===== MAIN ===== -->
+<div class="main">
+
+  <div class="shop-header">
+    <h1>STRIV Shop</h1>
+    <p>Spend your STRIV points wisely 💪</p>
+  </div>
+
+  <div class="points-box">
+    STRIV Points: <span id="points">6969</span>
+  </div>
+
+  <!-- ===== PRODUCTS ===== -->
+  <div class="shop-grid">
+
+    <!-- WHEY -->
+    <div class="product-card">
+      <img src="whey.png" class="product-img">
+      <div class="product-name">Whey Protein</div>
+      <div class="product-price">1200 pts</div>
+      <button onclick="addToCart(1200)">Add to Cart</button>
+    </div>
+
+    <!-- GLOVES -->
+    <div class="product-card">
+      <img src="gloves.png" class="product-img">
+      <div class="product-name">Workout Gloves</div>
+      <div class="product-price">800 pts</div>
+      <button onclick="addToCart(800)">Add to Cart</button>
+    </div>
+
+    <!-- CREATINE -->
+    <div class="product-card">
+      <img src="creatine.png" class="product-img">
+      <div class="product-name">Creatine</div>
+      <div class="product-price">600 pts</div>
+      <button onclick="addToCart(600)">Add to Cart</button>
+    </div>
+
+  </div>
+
+  <br><br>
+  <button class="close-btn" onclick="openCheckout()">Checkout</button>
+
+</div>
+
+<!-- ===== CHECKOUT POPUP ===== -->
+<div id="checkoutPopup" class="popup hidden">
+  <div class="popup-content">
+    <h2>Checkout</h2>
+
+    <input placeholder="Full Name">
+    <input placeholder="Address">
+    <input placeholder="City">
+    <input placeholder="Pincode">
+
+    <button class="close-btn" onclick="placeOrder()">Place Order</button>
+    <button class="close-btn" onclick="closeCheckout()">Cancel</button>
+  </div>
+</div>
+
+<script>
+let points = 6969;
+
+function addToCart(price) {
+  if (points >= price) {
+    points -= price;
+    document.getElementById("points").innerText = points;
+  } else {
+    alert("Not enough STRIV points!");
+  }
+}
+
+function openCheckout() {
+  document.getElementById("checkoutPopup").classList.remove("hidden");
+}
+
+function closeCheckout() {
+  document.getElementById("checkoutPopup").classList.add("hidden");
+}
+
+function placeOrder() {
+  alert("Order placed successfully 🔥💪");
+  closeCheckout();
+}
+</script>
+
+</body>
+</html>

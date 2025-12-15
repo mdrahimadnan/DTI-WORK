@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STRIV – Home</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+
+    /* ==============================
+       Forums Button — STRIV Styled
+       ============================== */
+    .forum-box {
+      background: #d9e6e5;
+      border-radius: 14px;
+      height: 55px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 600;
+      font-size: 18px;
+      color: #0f4446;
+      margin-top: 15px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+      cursor: pointer;
+      transition: 0.25s ease;
+    }
+
+    .forum-box:hover {
+      transform: translateY(-4px);
+      background: #c6d6d5;
+    }
+
+    /* Hover animation for center boxes */
+    .hover-box {
+      transition: 0.25s ease;
+      cursor: pointer;
+    }
+    .hover-box:hover {
+      transform: translateY(-5px);
+      background: #b8d4d3 !important;
+    }
+
+    /* STRIV Points Box */
+    .points-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #0f4446;
+      font-weight: 600;
+      text-align: center;
+      padding: 10px;
+    }
+    .points-box p {
+      margin-top: 2px;
+      font-size: 22px;
+    }
+
+    /* Profile Box (Left Big Panel) */
+    .user-box {
+      background: #d9e6e5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 15px;
+      border-radius: 16px;
+      color: #0f4446;
+    }
+    .user-avatar {
+      width: 70px;
+      height: 70px;
+      background: #1e5b5e;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
+    .user-name {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 700;
+    }
+    .user-streak {
+      margin-top: 6px;
+      opacity: 0.8;
+      font-size: 14px;
+    }
+    .profile-btn {
+      margin-top: 10px;
+      background: #1e5b5e;
+      color: white;
+      padding: 7px 15px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    /* Greeting Box (Top Center) */
+    .greeting-box {
+      background: #aac5c4 !important;
+      padding: 12px;
+      border-radius: 12px;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(15px);
+      animation: greetFade 0.8s ease forwards;
+    }
+    @keyframes greetFade {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Popup Background */
+    .popup {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      backdrop-filter: blur(4px);
+      z-index: 999;
+    }
+    .popup.hidden {
+      display: none;
+    }
+
+    /* Popup Card */
+    .popup-content {
+      background: #d9e6e5;
+      padding: 22px;
+      border-radius: 16px;
+      width: 420px;
+      max-width: 90vw;
+      text-align: center;
+      box-shadow: 0 0 15px rgba(0,0,0,0.25);
+      position: relative;
+    }
+
+    .close-btn {
+      margin-top: 14px;
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      background: #1e5b5e;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .lb-item {
+      background: #cfdad9;
+      padding: 10px;
+      margin-top: 8px;
+      border-radius: 10px;
+      font-weight: 600;
+    }
+
+    /* ==============================
+       STRIV Dark Theme for Forums
+       ============================== */
+    .forum-chat {
+      background: #0d2627;
+      color: #e5edf5;
+      border-radius: 16px;
+      padding-bottom: 25px;
+    }
+
+    .forum-rules {
+      font-size: 12px;
+      opacity: 0.85;
+      margin-bottom: 12px;
+    }
+
+    .chat-window {
+      background: #071618;
+      height: 220px;
+      border-radius: 12px;
+      padding: 10px;
+      overflow-y: auto;
+      border: 1px solid #184244;
+    }
+
+    .chat-msg {
+      margin-bottom: 7px;
+      padding: 7px 10px;
+      border-radius: 10px;
+      background: #12373a;
+    }
+
+    .chat-username {
+      color: #4fd1c5;
+      font-weight: 700;
+    }
+
+    .system-msg {
+      background: #10282a;
+      color: #9ca3af;
+      font-style: italic;
+    }
+
+    .chat-input-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .chat-input-row input {
+      flex: 1;
+      padding: 10px;
+      background: #071618;
+      border: 1px solid #184244;
+      border-radius: 10px;
+      color: #e5edf5;
+    }
+
+    .chat-input-row button {
+      background: #1e5b5e;
+      color: white;
+      border-radius: 10px;
+      padding: 10px 15px;
+      border: none;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .resize-handle {
+      width: 18px;
+      height: 18px;
+      background: #184244;
+      border-radius: 4px;
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      cursor: nwse-resize;
+    }
+
+    /* ===================== FRIENDS SECTION ===================== */
+    .friends-section {
+      width: 100%;
+      padding: 20px;
+      margin-top: 20px;
+    }
+
+    .friends-title {
+      text-align: center;
+      font-size: 26px;
+      color: #0f4446;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    .friends-list {
+      width: 100%;
+      background: #d9e6e5;
+      padding: 20px;
+      border-radius: 20px;
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .friend-card {
+      width: 110px;
+      height: 140px;
+      background: #aac5c4;
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 12px;
+    }
+
+    .friend-pfp {
+      width: 60px;
+      height: 60px;
+      background: #1e5b5e;
+      border-radius: 50%;
+    }
+
+    .friend-name {
+      margin-top: 10px;
+      color: #0f4446;
+      font-weight: 600;
+    }
+    .quote-title {
+    color: #0f4446 !important;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+.friend-card {
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.friend-card:hover {
+    transform: translateY(-4px);
+    background: #b8d4d3;
+}
+
+#friendPopup .friend-pfp {
+    width: 80px;
+    height: 80px;
+    background: #1e5b5e;
+    border-radius: 50%;
+}
+
+
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav class="navbar">
+    <div class="logo-area">
+      <img src="p1.png" class="logo">
+    </div>
+
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="MENTAL.HTML">Mental Health</a></li>
+      <li><a href="FITNESS.HTML">Fitness</a></li>
+      <li><a href="ABOUT.HTML">About</a></li>
+    </ul>
+  </nav>
+
+  <!-- MAIN LAYOUT -->
+  <main class="main-wrapper">
+
+    <!-- LEFT PANEL -->
+    <aside class="left-panel">
+      <div class="left-big-box user-box">
+        <div class="user-avatar"></div>
+        <h3 class="user-name">Admin</h3>
+        <p class="user-streak">🔥 Streak: <span id="streakCount">0</span> days</p>
+        <button class="profile-btn">View Profile</button>
+      </div>
+
+      <div class="forum-box" id="forumsBtn">Forums</div>
+    </aside>
+
+    <!-- CENTER AREA -->
+    <section class="center-area">
+
+      <div class="center-top-box greeting-box">
+        <h2>Hello, Admin</h2>
+      </div>
+
+      <div class="center-title-box">
+        <h1>STRIV</h1>
+        <p>Let's get fit</p>
+      </div>
+
+      <div class="three-box-row">
+        <a href = "shop.html" class = "mid-box hover-box" id="shopBtn">Shop</a>
+        <div class="mid-box hover-box" id="leaderboardBtn">Leaderboards</div>
+        <a href="mentalindex.html" class="mid-box hover-box">Mental Health</a>
+      </div>
+
+      <a href="exercise.html">
+        <button class="start-btn">Get Started</button>
+      </a>
+
+    </section>
+
+    <!-- RIGHT PANEL -->
+    <aside class="right-panel">
+      <div class="right-box points-box">
+        <h3>Your STRIV-Points</h3>
+        <p id="pointsValue">6969</p>
+      </div>
+
+      <div class="right-box motivation-box">
+    <p class="quote-title">‎ Quote of the day:</p>
+    <p class="quote">
+        "Discipline is choosing what you   want most over what you  want now.”
+    </p>
+</div>
+
+      </div>
+    </aside>
+
+  </main>
+
+  <!-- FRIENDS SECTION -->
+  <section class="friends-section">
+    <h2 class="friends-title">Friends</h2>
+
+    <div class="friends-list">
+
+      <div class="friend-card">
+        <div class="friend-pfp"></div>
+        <p class="friend-name">Batman</p>
+      </div>
+
+      <div class="friend-card">
+        <div class="friend-pfp"></div>
+        <p class="friend-name">Talwiinder</p>
+      </div>
+
+      <div class="friend-card">
+        <div class="friend-pfp"></div>
+        <p class="friend-name">Diddy</p>
+      </div>
+
+      <div class="friend-card">
+        <div class="friend-pfp"></div>
+        <p class="friend-name">Doggesh</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- LEADERBOARD POPUP -->
+  <div id="leaderboardPopup" class="popup hidden">
+    <div class="popup-content">
+      <h2>TOP STRIVERS</h2>
+      <div class="lb-item">1. You — <span id="lbScore">6969 pts</span></div>
+      <div class="lb-item">2. User2 — 1240 pts</div>
+      <div class="lb-item">3. User3 — 860 pts</div>
+      <div class="lb-item">4. User4 — 510 pts</div>
+      <div class="lb-item">5. User5 — 120 pts</div>
+      <button class="close-btn" id="closeLeaderboardBtn">Close</button>
+    </div>
+  </div>
+
+  <!-- FORUM POPUP -->
+  <div id="forumPopup" class="popup hidden">
+    <div class="popup-content forum-chat" id="forumContainer">
+      <h2>Forums</h2>
+      <p class="forum-rules">Be respectful. No toxicity. No spam. Stay disciplined.</p>
+
+      <div id="chatMessages" class="chat-window">
+        <div class="chat-msg system-msg">
+          Welcome to STRIV community chat.
+        </div>
+      </div>
+
+      <div class="chat-input-row">
+        <input id="chatInput" placeholder="Type your message...">
+        <button id="sendBtn">Send</button>
+      </div>
+
+      <button class="close-btn" id="closeForumBtn">Close</button>
+      <div class="resize-handle" id="resizeHandle"></div>
+    </div>
+  </div>
+  <!-- FRIEND POPUPS -->
+<div id="friendPopup" class="popup hidden">
+  <div class="popup-content">
+    <h2 id="friendName">Friend</h2>
+    <div class="friend-pfp" style="margin: 10px auto;"></div>
+
+    <p id="friendStatus" style="margin-bottom:15px; color:#0f4446; font-weight:600;">
+      Active now
+    </p>
+
+    <button class="close-btn" id="closeFriendBtn">Close</button>
+  </div>
+</div>
+
+
+  <script src="home.js"></script>
+  
+
+</body>
+</html>
