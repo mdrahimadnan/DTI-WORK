@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STRIV – Login</title>
+
+<style>
+/* ================= GLOBAL ================= */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body{
+    height: 100vh;
+    background: linear-gradient(135deg, #d9e6e5, #aac5c4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ================= LOGIN CARD ================= */
+.login-card{
+    width: 380px;
+    background: #d9e6e5;
+    border-radius: 22px;
+    padding: 35px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+/* LOGO / TITLE */
+.login-title{
+    font-size: 34px;
+    font-weight: 800;
+    color: #0f4446;
+}
+
+.login-sub{
+    margin-top: 6px;
+    margin-bottom: 25px;
+    color: #0f4446;
+    opacity: 0.8;
+}
+
+/* ================= INPUTS ================= */
+.input-box{
+    margin-bottom: 18px;
+}
+
+.input-box input{
+    width: 100%;
+    padding: 14px;
+    border-radius: 14px;
+    border: none;
+    background: #aac5c4;
+    font-size: 16px;
+    outline: none;
+    color: #0f4446;
+    font-weight: 600;
+}
+
+.input-box input::placeholder{
+    color: #0f4446;
+    opacity: 0.7;
+}
+
+/* ================= BUTTON ================= */
+.login-btn{
+    width: 100%;
+    margin-top: 10px;
+    padding: 14px;
+    border-radius: 16px;
+    border: none;
+    background: #1e5b5e;
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.login-btn:hover{
+    background: #0f4446;
+    transform: translateY(-2px);
+}
+
+/* ================= ERROR ================= */
+.error{
+    margin-top: 12px;
+    color: #b00020;
+    font-size: 14px;
+    display: none;
+}
+
+/* ================= FOOTER ================= */
+.footer-text{
+    margin-top: 20px;
+    font-size: 12px;
+    opacity: 0.6;
+    color: #0f4446;
+}
+</style>
+</head>
+
+<body>
+
+<div class="login-card">
+    <h1 class="login-title">STRIV</h1>
+    <p class="login-sub">Login to continue</p>
+
+    <div class="input-box">
+        <input type="text" id="username" placeholder="Username">
+    </div>
+
+    <div class="input-box">
+        <input type="password" id="password" placeholder="Password">
+    </div>
+
+    <button class="login-btn" onclick="login()">Login</button>
+
+    <p class="error" id="errorMsg">Invalid username or password</p>
+
+    <p class="footer-text">Fitness • Yoga • Mental Wellness</p>
+</div>
+
+<script>
+function login(){
+    const user = document.getElementById("username").value;
+    const pass = document.getElementById("password").value;
+    const error = document.getElementById("errorMsg");
+
+    if(user === "admin" && pass === "admin"){
+        window.location.href = "index.html";
+    } else {
+        error.style.display = "block";
+    }
+}
+</script>
+
+</body>
+</html>
